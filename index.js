@@ -2,7 +2,7 @@ var MongoClient = require('mongodb').MongoClient,
     assert = require('assert'),
     Hapi = require('hapi');
 
-var url = 'mongodb://localhost:27017/learning_mongo'
+var url = 'mongodb://admin:password@ds111066.mlab.com:11066/learning_mongo'
 
 var server = new Hapi.Server();
 server.connection({
@@ -16,6 +16,7 @@ server.route( [
         path: '/api/tours',
         config: {json: {space: 2}},
         handler: function(request, reply) {
+            
             var findObject = {};
             for (var key in request.query) {
                 findObject[key] = request.query[key]
@@ -24,6 +25,7 @@ server.route( [
                 assert.equal(null,error);
                 reply(tours);
             })
+
         }
     },
     // Add new tour
@@ -102,6 +104,6 @@ MongoClient.connect(url, function(err, db) {
     console.log("connected correctly to server");
     collection = db.collection('tours');
     server.start(function(err) {
-        console.log('Hapi is listening to http://localhost:8080')
+        console.log('Hapi is listening to http://localhost:8080'+ err);
     })
 })
