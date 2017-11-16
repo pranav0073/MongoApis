@@ -103,7 +103,7 @@ MongoClient.connect(url, function(err, db) {
     assert.equal(null,err);
     console.log("connected correctly to server");
     collection = db.collection('tours');
-    server.start(function(err) {
-        console.log('Hapi is listening to http://localhost:8080'+ err);
-    })
+    ///server.start(function(err) {
+        //console.log('Hapi is listening to http://localhost:8080'+ err);
+  //  })
 })
